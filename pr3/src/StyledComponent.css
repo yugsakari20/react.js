@@ -1,0 +1,54 @@
+:root {
+    --primary-color: #4caf50;
+    --secondary-color: #f44336;
+    --font-family: 'Arial, sans-serif';
+  }
+  
+  .styled-container {
+    padding: 20px;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    background-color: var(--secondary-color);
+    color: white;
+    font-family: var(--font-family);
+    text-align: center;
+  }
+  
+  .styled-container.styled {
+    background-color: var(--primary-color);
+    transform: scale(1.1);
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .styled-title {
+    font-size: 2rem;
+  }
+  
+  .styled-description {
+    font-size: 1.2rem;
+    margin-top: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .styled-container {
+      padding: 15px;
+    }
+    .styled-title {
+      font-size: 1.5rem;
+    }
+    .styled-description {
+      font-size: 1rem;
+    }
+  }
+  

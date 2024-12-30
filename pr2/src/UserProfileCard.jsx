@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./UserProfileCard.css";
+
 
 const UserProfileCard = ({ name, age, bio, location, profilePicture }) => {
   const [isFollowing, setIsFollowing] = useState(false);

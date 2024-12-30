@@ -1,10 +1,11 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+
+import UserProfileCard from "./components/UserProfileCard";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <>
@@ -28,8 +29,17 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+
+      {/* UserProfileCard Example */}
+      <UserProfileCard
+        name="John Doe"
+        age={28}
+        bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin suscipit metus nec felis tempus, a auctor purus sagittis."
+        location="New York, USA"
+        profilePicture="https://via.placeholder.com/150"
+      />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
