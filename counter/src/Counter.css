@@ -1,0 +1,26 @@
+.counter-container {
+    text-align: center;
+    margin-top: 50px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    width: 200px;
+    margin: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .counter-buttons {
+    margin-top: 20px;
+  }
+  
+  .counter-button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 16px;
+  }
+  
