@@ -1,56 +1,74 @@
-import React, { useState } from "react";
-import API from "../config/Api";
+import { useState } from "react";
+import API from "./config/Api";
 
-const Form = () => {
+const Form = ({ initialData = {} }) => {
   const [student, setStudent] = useState({
-    name: "",
-    age: "",
-    course: "",
+    name: initialData.name ? initialData.name : "",
+    age: initialData.age ? initialData.age : "",
+    email: initialData.email ? initialData.email : "",
+    phone: initialData.phone ? initialData.phone : "",
   });
 
-  const handleInput = (e) => {
+  const handleinput = (e) => {
     const { name, value } = e.target;
-    setStudent({ ...student, [name]: value });
+    setStudent({
+      ...student,
+      [name]: value,
+    });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await API.post("/student", student);
-      setStudent({ name: "", age: "", course: "" }); 
-    } catch (error) {
-      console.error("Error adding student:", error);
+  const createstudent = async (student) => {
+    if (initialData?.id) {
+      console.log("update course", initialData.id);
+    } else {
+      let res = await API.post("/student", student);
     }
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    createstudent(student);
+    setStudent({
+      name: "",
+      age: "",
+      email: "",
+      phone: "",
+    });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="name"
-        value={student.name}
-        onChange={handleInput}
-        placeholder="Enter Name"
-        required
-      />
-      <input
-        type="number"
-        name="age"
-        value={student.age}
-        onChange={handleInput}
-        placeholder="Enter Age"
-        required
-      />
-      <input
-        type="text"
-        name="course"
-        value={student.course}
-        onChange={handleInput}
-        placeholder="Enter Course"
-        required
-      />
-      <button type="submit">Add Student</button>
-    </form>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="name"
+          value={student.name}
+          onChange={handleSubmit}
+        />
+
+        <input
+          type="number"
+          name="age"
+          value={student.age}
+          onChange={handleSubmit}
+        />
+
+        <input
+          type="email"
+          name="email"
+          value={student.email}
+          onChange={handleSubmit}
+        />
+
+        <input
+          type="number"
+          name="phone"
+          value={student.phone}
+          onChange={handleSubmit}
+        />
+
+        <input type="submit" />
+      </form>
+    </div>
   );
 };
 
