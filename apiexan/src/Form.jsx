@@ -1,59 +1,64 @@
 import { useState } from "react";
 import API from "./config/Api";
 
-const Form = ({ initialData = {} }) => {
-  const [employee, setemployee] = useState({
-    name: initialData.name ? initialData.name : "",
-    salarey: initialData.salarey ? initialData.salarey : "",
-    task: initialData.task ? initialData.task : "",
+const Form = ({ onEmployeeAdded }) => {
+  const [employee, setEmployee] = useState({
+    name: "",
+    salary: "",
+    task: "",
   });
 
   const handleInput = (e) => {
     const { name, value } = e.target;
-    setemployee({
+    setEmployee({
       ...employee,
       [name]: value,
     });
   };
 
-  const createEmployee = async (employee) => {
-    if (initialData?.id) {
-      await API.patch(`/employe/${initialData.id}`, employee);
-    } else {
-      await API.post("/employe", employee);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await API.post("/employe", employee); 
+      setEmployee({ name: "", salary: "", task: "" });
+      onEmployeeAdded(); 
+    } catch (error) {
+      console.error("Error adding employee:", error);
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    createEmployee(employee);
-    setemployee({ name: "", salarey: "", task: "" });
-  };
   return (
     <div>
+      <h2>Add Employee</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
           name="name"
+          placeholder="Name"
           value={employee.name}
           onChange={handleInput}
+          required
         />
         <input
           type="number"
-          name="salarey"
-          value={employee.salarey}
+          name="salary"
+          placeholder="Salary"
+          value={employee.salary}
           onChange={handleInput}
+          required
         />
         <input
           type="text"
           name="task"
+          placeholder="Task"
           value={employee.task}
           onChange={handleInput}
+          required
         />
-        <input type="submit" />
+        <button type="submit">Add</button>
       </form>
     </div>
   );
 };
-export default Form;
 
+export default Form;
