@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
+  const navigate = useNavigate();
 
   const handleInput = (e) => {
     const { name, value } = e.target;
@@ -24,6 +26,7 @@ const Login = () => {
     ) {
       alert("Login successful!");
       localStorage.setItem("loggedIn", true);
+      navigate("/home"); // Redirect to Home
     } else {
       alert("Invalid email or password!");
     }
@@ -39,6 +42,7 @@ const Login = () => {
           value={loginData.email}
           onChange={handleInput}
           placeholder="Email"
+          required
         />
         <input
           type="password"
@@ -46,6 +50,7 @@ const Login = () => {
           value={loginData.password}
           onChange={handleInput}
           placeholder="Password"
+          required
         />
         <input type="submit" value="Login" />
       </form>
