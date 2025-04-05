@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { API } from "../config/Api";
+import { API } from "../config/api";
 import Cookies from "js-cookie";
 
 
